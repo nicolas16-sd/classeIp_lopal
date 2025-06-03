@@ -9,7 +9,7 @@ public class Logica {
 	private int segundoOcteto;
 	private int terceiroOcteto;
 	private int quartoOcteto;
-	private int cidr;
+	private static int cidr;
 	private int network;
 
 	public void setOctetos(int primeiroOcteto, int segundoOcteto, int terceiroOcteto, int quartoOcteto) {
@@ -40,30 +40,43 @@ public class Logica {
 	}
 
 	public static String getMascaraDecimal(String classe) {
-		switch (classe) {
-		case "CLASSE A":
-			return "255.0.0.0";
-		case "CLASSE B":
-			return "255.255.0.0";
-		case "CLASSE C":
-			return "255.255.255.0";
-		default:
-			return "Fora do intervalo!";
-		}
+	    int[] octetos = new int[4];
+	    int bitsRestantes = cidr;
+
+	    for (int i = 0; i < 4; i++) {
+	        if (bitsRestantes >= 8) {
+	            octetos[i] = 255;
+	            bitsRestantes -= 8;
+	        } else if (bitsRestantes > 0) {
+	            octetos[i] = (int) (256 - Math.pow(2, 8 - bitsRestantes));
+	            bitsRestantes = 0;
+	        } else {
+	            octetos[i] = 0;
+	        }
+	    }
+
+	    return octetos[0] + "." + octetos[1] + "." + octetos[2] + "." + octetos[3];
 	}
 
+
 	public static String getMascaraBinaria(String classe) {
-		switch (classe) {
-		case "CLASSE A":
-			return "11111111.00000000.00000000.00000000";
-		case "CLASSE B":
-			return "11111111.11111111.00000000.00000000";
-		case "CLASSE C":
-			return "11111111.11111111.11111111.00000000";
-		default:
-			return "Fora do intervalo!";
-		}
+	    StringBuilder mascaraBinaria = new StringBuilder();
+
+	    for (int i = 0; i < 32; i++) {
+	        if (i < cidr) {
+	            mascaraBinaria.append('1');
+	        } else {
+	            mascaraBinaria.append('0');
+	        }
+
+	        if ((i + 1) % 8 == 0 && i < 31) {
+	            mascaraBinaria.append('.');
+	        }
+	    }
+
+	    return mascaraBinaria.toString();
 	}
+
 
 	public int getNumeroIpsDisponiveis() {
 		if (cidr >= 32) {
@@ -99,6 +112,17 @@ public class Logica {
 
 	    return subredes;
 	}
+	
+	public int getNumeroDeSubRedes() {
+	    int prefixoOriginal = getPrefixoPadrao(getClasseIp());
+	    
+	    if (cidr <= prefixoOriginal) {
+	        return 1; // Sem sub-redes, é a rede original
+	    }
+
+	    return (int) Math.pow(2, cidr - prefixoOriginal);
+	}
+
 
 	private String formatarIp(long ip) {
 	    return ((ip >> 24) & 0xFF) + "." +
