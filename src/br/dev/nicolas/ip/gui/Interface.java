@@ -3,6 +3,8 @@ package br.dev.nicolas.ip.gui;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.List;
+
 import br.dev.nicolas.ip.model.*;
 
 public class Interface extends JFrame {
@@ -18,7 +20,7 @@ public class Interface extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
 
-        JLabel rotuloIp = new JLabel("Endereço IP:");
+        JLabel rotuloIp = new JLabel("EndereÃ§o IP:");
         rotuloIp.setBounds(20, 20, 100, 25);
         add(rotuloIp);
 
@@ -49,7 +51,7 @@ public class Interface extends JFrame {
         resultadoArea.setEditable(false);
         add(resultadoArea);
 
-        // Evento do botão calcular
+        // Evento do botï¿½o calcular
         botaoCalcular.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 calcular();
@@ -75,13 +77,18 @@ public class Interface extends JFrame {
             String classe = ip.getClasseIp();
             String resultado = "IP: " + ip.getIp() + "\n";
             resultado += "Classe: " + classe + "\n";
-            resultado += "Máscara Decimal: " + Logica.getMascaraDecimal(classe) + "\n";
-            resultado += "Máscara Binária: " + Logica.getMascaraBinaria(classe) + "\n";
-            resultado += "Número de IPs disponíveis: " + ip.getNumeroIpsDisponiveis();
+            resultado += "MÃ¡scara Decimal: " + Logica.getMascaraDecimal(classe) + "\n";
+            resultado += "MÃ¡scara BinÃ¡ria: " + Logica.getMascaraBinaria(classe) + "\n";
+            resultado += "NÃºmero de IPs disponÃ­veis: " + ip.getNumeroIpsDisponiveis();
+            resultado += "\nSub-redes:\n";
+            for (String subrede : ip.getSubRedes()) {
+                resultado += subrede + "\n";
+            }
+
 
             resultadoArea.setText(resultado);
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this, "Digite apenas números válidos nos campos.", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Digite apenas nÃºmeros vï¿½lidos nos campos.", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
 
