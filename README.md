@@ -6,6 +6,9 @@
 
 Este projeto é uma **Calculadora de IP** desenvolvida em Java, na disciplina de Arquitetura de Redes com IoT no SENAI Jandira, utilizando a biblioteca **Swing** para a interface gráfica. Ela permite que você insira um endereço IP e um prefixo CIDR para obter informações detalhadas sobre a rede, como classe do IP, máscara de sub-rede (decimal e binária), número de IPs disponíveis e a listagem de sub-redes com seus respectivos IPs válidos e de broadcast.
 
+## Autor
+Nicolas dos Santos Durão
+
 ## Funcionalidades
 
 * **Cálculo de Classe de IP**: Identifica a classe do IP (A, B ou C).
@@ -56,3 +59,4 @@ A janela da calculadora será aberta.
 3.  Clique no botão "Calcular".
 
 Os resultados serão exibidos na área de texto abaixo.
+
