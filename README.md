@@ -31,7 +31,7 @@ Para rodar esta calculadora em seu ambiente local, siga os passos abaixo:
 
 1.  **Clone o repositório:**
     ```bash
-    git clone [https://github.com/seu-usuario/calculadora-ip.git](https://github.com/seu-usuario/calculadora-ip.git)
+    git clone [https://github.com/nicolas16-sd/classeIp_lopal.git](https://github.com/nicolas16-sd/classeIp_lopal.git)
     cd calculadora-ip
     ```
     *(**Nota:** Se você não tem um repositório, pode simplesmente copiar os arquivos `Interface.java` e `Logica.java` para o seu projeto Java no Eclipse.)*
@@ -42,8 +42,8 @@ Para rodar esta calculadora em seu ambiente local, siga os passos abaixo:
     * Clique em `Finish`.
 
 3.  **Execute a aplicação:**
-    * Localize o arquivo `Interface.java` no seu Project Explorer.
-    * Clique com o botão direito sobre ele e selecione `Run As > Java Application`.
+    * Localize o arquivo `CalculadoraApp.java` no seu Project Explorer.
+    * Clique sobre ele e selecione `Run As > Java Application`.
 
 A janela da calculadora será aberta.
 
